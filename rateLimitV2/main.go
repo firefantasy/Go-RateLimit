@@ -72,7 +72,7 @@ func newPool() *redis.Pool {
 		MaxIdle:   80,
 		MaxActive: 12000, // max number of connections
 		Dial: func() (redis.Conn, error) {
-			c, err := redis.Dial("tcp", ":6379")
+			c, err := redis.Dial("tcp", "192.168.1.250:6388")
 			if err != nil {
 				panic(err.Error())
 			}
@@ -121,4 +121,5 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 
 	failedLog := strconv.FormatInt(reqTime, 10) + " request success!"
 	writeLog(failedLog, "./stat.log")
+
 }
